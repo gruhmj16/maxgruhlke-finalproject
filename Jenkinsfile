@@ -1,20 +1,15 @@
 pipeline {
     agent any
     stages {
-        stage('Build') {
+        stage('Checkout Code') {
             steps {
-                sh 'npm install'
-                sh 'npm run build'
-                sh 'ls'
-                sh 'cd build'
-                sh 'ls'
+                git 'https://github.com/gruhmj16/maxgruhlke-finalproject.git'
             }
         }
-        stage('S3 Upload') {
+        stage('Deploy to S3') {
             steps {
                 withAWS(region: 'us-east-1', credentials: 'd0fa57dc-3632-4193-8942-6c5fb04bac6f') {
-                    sh 'ls -la build'
-                    sh 'aws s3 cp build s3://maxgruhlke-finalproject/ --recursive'
+                    sh 'aws s3 cp . s3://maxgruhlke-finalproject/ --recursive --exclude ".git/*"'
                 }
             }
         }
