@@ -14,7 +14,7 @@ pipeline {
             steps {
                 withAWS(region: 'us-east-1', credentials: '') {
                     sh 'ls -la build'
-                    sh 'aws s3 cp build s3://jenkins-react-sk/ --recursive'
+                    sh 'aws s3 cp build s3://maxgruhlke-finalproject/ --recursive'
                 }
             }
         }
