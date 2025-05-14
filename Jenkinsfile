@@ -3,7 +3,7 @@ pipeline {
     stages {
         stage('Checkout Code') {
             steps {
-                git 'https://github.com/gruhmj16/maxgruhlke-finalproject.git'
+                git 'git@github.com:gruhmj16/maxgruhlke-finalproject.git'
             }
         }
         stage('Deploy to S3') {
